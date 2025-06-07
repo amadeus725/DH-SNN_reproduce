@@ -1,0 +1,18 @@
+environment:
+  cuda_required: false
+  dependencies:
+  - torch
+  - spikingjelly
+  - numpy
+  - matplotlib
+  - plotly
+  python_version: '>=3.8'
+paths:
+  datasets: datasets/raw
+  logs: results/logs
+  models: results/models
+  results: results
+project:
+  description: Dendritic Heterogeneity Spiking Neural Networks
+  name: DH-SNN
+  version: 1.0.0

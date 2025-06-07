@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-06-05T14:33:49.921503",
+  "experiments": {
+    "S-MNIST_Vanilla-SRNN": {
+      "status": "completed",
+      "best_accuracy": 75.88,
+      "final_test_accuracy": 74.08,
+      "training_time_hours": 24.655713656809596,
+      "epochs": 150,
+      "file_path": "results/S-MNIST_vanilla_srnn_results.pth"
+    },
+    "PS-MNIST_Vanilla-SRNN": {
+      "status": "completed",
+      "best_accuracy": 76.81,
+      "final_test_accuracy": 76.23,
+      "training_time_hours": 24.897585214906268,
+      "epochs": 150,
+      "file_path": "results/PS-MNIST_vanilla_srnn_results.pth"
+    },
+    "S-MNIST_DH-SRNN": {
+      "status": "completed",
+      "best_accuracy": 10.1,
+      "final_test_accuracy": 9.82,
+      "training_time_hours": 0.8281377865870794,
+      "epochs": 2,
+      "file_path": "results/S-MNIST_dh_srnn_results.pth"
+    },
+    "PS-MNIST_DH-SRNN": {
+      "status": "training",
+      "note": "Model checkpoint exists, training in progress"
+    }
+  }
+}

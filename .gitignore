@@ -1,0 +1,306 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# PyTorch
+*.pth
+*.pt
+
+# Datasets (large files)
+datasets/raw/
+datasets/processed/
+datasets/temp/
+datasets/cache/
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# Results and logs
+results/logs/
+results/models/
+results/checkpoints/
+*.log
+*.out
+*.err
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+
+# Specific to this project - Original paper and large files
+reference/original_paper_code/
+reference/datasets/
+reference/originalpaper.tex
+
+# LaTeX compilation outputs
+DH-SNN_Reproduction_Report/*.pdf
+DH-SNN_Reproduction_Report/*.aux
+DH-SNN_Reproduction_Report/*.log
+DH-SNN_Reproduction_Report/*.out
+DH-SNN_Reproduction_Report/*.toc
+DH-SNN_Reproduction_Report/*.nav
+DH-SNN_Reproduction_Report/*.snm
+
+# Large dataset files (provide download scripts instead)
+datasets/speech_commands/speech_commands_v*.tar.gz
+datasets/mnist/MNIST/
+datasets/neurovpr/
+datasets/raw/
+mnist_data/
+
+# Model checkpoints and weights
+*.pth
+*.pt
+*.ckpt
+*.weights
+
+# Large dataset files and archives
+*.tar.gz
+*.h5.gz
+*.h5
+*.hdf5
+datasets/raw/
+datasets/*/raw/
+datasets/neurovpr/raw_data/
+mnist_data/
+**/MNIST/raw/
+
+# Specific large files
+experiments/dataset_benchmarks/gsc/model/
+experiments/dataset_benchmarks/*/model/
+reference/original_paper_code/**/*.pth
+
+# Reports and presentations
+reports/presentation/*.pdf
+reports/reproduction_report/*.pdf
+
+# Large result files and outputs
+*.html
+results/figures/*.png
+results/figures/*.jpg
+results/figures/*.svg
+results/*.pth
+results/*.pt
+results/*.ckpt
+
+# Large data files
+*.h5
+*.hdf5
+*.npy
+*.npz
+datasets/*/raw/
+datasets/*/processed/
+
+# Generated reports and presentations
+*.pdf
+DH-SNN_Reproduction_Report/*.pdf
+reports/presentation/*.pdf
+reports/reproduction_report/*.pdf
+
+# Jupyter notebook outputs
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/
+
+# Model weights and checkpoints (keep only small examples)
+models/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.weights
+
+# Large logs and outputs
+*.out
+*.err
+logs/
+wandb/
+runs/
+
+# Original paper materials (for copyright reasons)
+reference/original_paper_code/
+reference/originalpaper.tex
+
+# Wandb logs
+wandb/
+
+# TensorBoard logs
+runs/
+logs/
+
+# Memory profiling
+*.prof
+
+# Backup files
+*.bak
+*.backup
+
+# Configuration files with sensitive data
+config/secrets.yaml
+config/private.yaml
+
+# Node.js (for any web components)
+node_modules/
+package-lock.json
+
+# R files (if any)
+.Rhistory
+.RData
+.Ruserdata

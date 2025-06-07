@@ -1,0 +1,9 @@
+[
+  {
+    "Task": "S-MNIST",
+    "Model": "DH-SRNN",
+    "Best_Accuracy": 10.1,
+    "Training_Time_Hours": 0.8281377865870794,
+    "Parameters": "N/A"
+  }
+]

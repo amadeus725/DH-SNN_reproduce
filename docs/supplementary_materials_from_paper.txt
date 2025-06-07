@@ -1,0 +1,501 @@
+SupplementaryInformationforTemporalDendritic
+ HeterogeneityIncorporatedwithSpikingNeural
+ NetworksforLearningMulti-timescaleDynamics
+ HanleZheng1,ZhongZheng1,RuiHu1,BoXiao1,YujieWu2,FangwenYu1,XueLiu1,Guoqi
+ Li3,LeiDeng1,*
+ Contents
+ S1SupplementaryTables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S1
+ S1.1Modelconfigurationdetailsfortasksusedinablationstudies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S1
+ S1.2Modelconfigurationdetailsforothertasks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S1
+ S1.3 Initializationoftimingfactors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S2
+ S1.4ComputationalefficiencycomparisonbetweenSNNswithdendriticheterogeneityandsynapticheterogeneity . . . .S2
+ S1.5ComputationalefficiencycomparisonbetweenDH-SNNsandLSTM . . . . . . . . . . . . . . . . . . . . . . . . . .S2
+ S1.6AccuracycomparisonbetweenDH-SNNsandpriormethodsforthree-classEEGrecognition . . . . . . . . . . . . .S2
+ S2SupplementaryFigures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S3
+ S2.1Networkstructures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S3
+ S2.2 Influenceofthemembranepotentialtimingfactors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S4
+ S2.3 Influenceofthemembranepotentialresetmechanism. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S5
+ S2.4Two-dendritic-branchDH-SNNswithoutconnectionrestrictionforthemulti-timescalespikingXORproblem. . . .S6
+ S2.5TemporalcharacterizationofSHDandSSCdatasets. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S7
+ S2.6 Influenceofthenumberofdendriticbranches . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S8
+ S2.7 Influenceoftheparametervolume . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S9
+ S2.8Modelrobustness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S10
+ S2.9Modelgeneralization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S11
+ S2.10Influenceofthedendriticconnectionpattern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S12
+ S2.11Detailsofimplementationonneuromorphichardware . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S13
+ S2.12AdditionalexperimentsforEEG-basedemotionrecognition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S14
+ S2.13TheNeuroVPRtaskfortherobot . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S15
+ SupplementaryReferences . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .S16
+ 1CenterforBrainInspiredComputingResearch(CBICR),DepartmentofPrecisionInstrument,TsinghuaUniversity,Beijing,China.
+ 2InstituteofTheoreticalComputerScience,GrazUniversityofTechnology,Graz,Austria.
+ 3InstituteofAutomation,ChineseAcademyofSciences,Beijing,China.
+ *Correspondingauthor.Email: leideng@mail.tsinghua.edu.cn
+S1SupplementaryTables
+ S1.1Modelconfigurationdetailsfortasksusedinablationstudies
+ TableS1.Modelconfigurationdetailsfortasksusedinablationstudies.
+ Task DelayedspikingXORproblem Multi-timescalespikingXORproblem SHD SSC
+ Inputdimension 20 40 700 700
+ Outputdimension 2 2 20 35
+ Numberofneuronsperlayer 16 16 64 200
+ Seq. length 150 100 1000 1000
+ Learningrate 1e-2 1e-2 1e-2 1e-2
+ Loss CE CE CE CE
+ Batchsize 500 500 100 100
+ Numberofepochs 100 100 100 100
+ Learningratedecay 0.1per50 0.1per50 0.5per20 0.1per25
+ Learningratedecaytype Step Step Step Step
+ S1.2Modelconfigurationdetailsforothertasks
+ TableS2.Modelconfigurationdetailsforothertasks.
+ Task GSC S-MNIST PS-MNIST TIMIT DEAP NeuroVPR
+ Inputdimension 120 1 1 39 32 2752
+ Outputdimension 15 10 10 61 3 100
+ Networkstructure 120-r300-15 1-r64-r256-10 1-r64-r256-10 39-r256(bi)-61 32-f200-3 2752-f512(2)-f256-100
+ 120-f200(3)-15 32-r100-3 2752-521-r512-100
+ Seq. length 101 784 784 1000 384 6
+ Learningrate 1e-2 1e-2 1e-2 1e-2 1e-2 1e-3
+ Loss CE CE CE CE CE CE
+ Batchsize 200 128 128 64 200 20
+ NumberofEpochs 150 150 150 150 200 100
+ Learningratedecay 0.5per25 0.1per50 0.1per50 0.1per60 0.1per100 0.5per25
+ Learningratedecaytype Step Step Step Step Step Step
+ *Theprefixesof"r"and"f"innetworkstructurerepresentthelayerofDH-SRNNandDH-SFNN,respectively.
+ *The"bi"representthelayerisabidirectionallayer.Thenumberinthebracketrepresentthenumberofstackinglayerswiththesamestructure.
+ S1/S16
+S1.3 Initializationoftimingfactors
+ TableS3. Initializationoftimingfactors.
+ Initializeddistribution Small Medium Large
+ ˆ β U(−4,0) U(0,4) U(2,6)
+ ˆ α U(−4,0) U(0,4) U(2,6)
+ S1.4ComputationalefficiencycomparisonbetweenSNNswithdendriticheterogeneityandsynaptichet
+erogeneity
+ TableS4.ComputationalefficiencycomparisonbetweenSNNswithdendriticheterogeneityandsynapticheterogeneity.
+ Model #Parameters #Computationaloperationsfordendrite&synapsedynamics
+ 1-layerSFNNwithdendriticheterogeneity MN+(2D+1)N 2DN
+ 1-layerSFNNwithsynapticheterogeneity 3MN+N 2MN
+ 1-layerSRNNwithdendriticheterogeneity MN+N2+(2D+1)N 2DN
+ 1-layerSRNNwithsynapticheterogeneity 3MN+3N2+N 2MN+2N2
+ *WeassumethatalayerhasNneuronswithMinputsandDrepresentsthenumberofdendriticbranchesperneuronwheretheD≪M.
+ S1.5ComputationalefficiencycomparisonbetweenDH-SNNsandLSTM
+ TableS5.ComputationalefficiencycomparisonbetweenDH-SNNsandLSTM.
+ Dataset Model #Parameters #MACs/timestep Accuracy(%) EfficiencyImprovement(×)
+ SHD LSTM1 0.43M 426.5K 89.2% 1×
+ DH-SRNN(1-layer,2-branch) 0.05M 0.3K 91.34% 1456×
+ SSC LSTM1 0.43M 428.4K 73.1% 1×
+ DH-SRNN(1-layer,8-branch) 0.19M 2.5K 79.64% 187×
+ *#MACsdenotestheequivalentnumberofmultiply-and-accumulate(MAC)operations.Eachaccumulationoperationisregardedas19.6%ofaMAC
+ operationaccordingtothereportedrulethatanadditionoperationconsumes0.9pJenergywhileaMACoperationconsumes4.6pJenergybytakingthe45nm
+ CMOStechnologyasanexample2.
+ *Theefficiencyimprovementismeasuredbytheratioofaccuracyover#MACs/timestep.
+ S1.6AccuracycomparisonbetweenDH-SNNsandpriormethodsforthree-classEEGrecognition
+ TableS6.AccuracycomparisonbetweenDH-SNNsandpriormethodsforthree-classEEGrecognition.
+ Model #Parameters Accuracy
+ MLP3
+ 0.04M Valence:49.5%
+ Arousal:46.0%
+ CNN4
+ 0.12M Valence:66.8%
+ Arousal:57.6%
+ SCNN5
+ 0.90M Valence:70.23%
+ Arousal:70.25%
+ DH-SFNN(1-layer,8-branch) 0.01M Valence:77.46%
+ Arousal:80.23%
+ S2/S16
+S2SupplementaryFigures
+ S2.1Networkstructures
+（a）
+（c）
+（b）
+Sparsity ratio = 1/2
+ …
+ … …
+ …
+ Vanilla LIF neurons
+ Synaptic inputs
+ Output neurons
+ Output neurons
+ DH-LIF neurons, 
+1-branch
+ Synaptic inputs
+ …
+ …
+ Output neurons
+ DH-LIF neurons, 
+2-branch
+ Signal 2
+（d）
+…
+ Output neurons
+ DH-LIF neurons, 
+1-branch
+ Synaptic inputs
+ … DH-LIF neurons, 
+1-branch
+ …
+ Signal 1
+ Synaptic inputs
+ Signal 2 Signal 1
+（e）
+…
+ …
+ Output neurons
+ DH-LIF neurons, 
+1-branch
+ Synaptic inputs
+ Recurrent synapses / weights
+ Input synapses / weights
+ Hidden synapses / weights
+ Read-out synapses / weights
+ Soma
+ Dendritic branches
+ DH-LIF neuron
+ Input
+ Output
+ Signal 2 Signal 1
+ FigureS1.Networkstructures. (a)VanillaSFNNand(b)DH-SFNNwithonedendriticbranchineachneuronusedbythe
+ delayedandmulti-timescalespikingXORproblems. (c)One-layerDH-SFNNwithtwodendriticbranchesineachneuron,(d)
+ two-layerDH-SFNNwithonedendriticbranchineachneuron,and(e)one-layerDH-SRNNwithonedendriticbranchineach
+ neuronusedbythemulti-timescalespikingXORproblem.ThenetworkstructuresusedonSHDandSSCdatasetsaresimilar
+ toabovestructuresandthedifferenceslieinthenumberofdendriticbranchesineachneuron,thenumberofneuronsperlayer,
+ andthenumberofhiddenlayers,whichareprovidedinTableS1.
+ S3/S16
+S2.2 Influence of the membrane potential timing factors
+（a）
+（b）
+Figure S2. Influence of the membrane potential timing factors. Comparing recognition accuracy of DH-SFNNs with fixed
+ or learnable membrane potential timing factors under different initialization on (a) SHD and (b) SSC datasets. The sampling
+ time interval is dt=1ms. Each model only has one single layer and one dendritic branch in each neuron. The timing factors of
+ dendritic branches are learnable and initialized with a large initialization. The results imply that learning membrane potential
+ timing factors can slightly improve accuracy in most situations, while can boost accuracy when the initialized distribution is
+ inappropriate. For example, the small initialization of membrane potential timing factors on SHD might lose the long-term
+ memory of the dominant low-frequency components while the large initialization on SSC might lose the tracking capability of
+ the rich high-frequency components, which can be alleviated by learning.
+ S4/S16
+S2.3 Influence of the membrane potential reset mechanism
+（a）
+（b）
+（c）
+Figure S3. Influence of the membrane potential reset mechanism. Comparing recognition accuracy of vanilla SFNNs with
+ different membrane potential reset mechanisms and DH-SFNNs with one dendritic branch in each neuron and one layer. The
+ long-term memory is tested when performing tasks including (a) the delayed spiking XOR problem, (b) SHD and (c) SSC
+ datasets. The timing factors of membrane potentials and dendritic currents are initialized with a medium distribution and a
+ large distribution, respectively, both of which are learnable.
+ S5/S16
+S2.4 Two-dendritic-branch DH-SNNs without connection restriction for the multi-timescale spiking XOR
+ problem
+ (a)
+ (b)
+ Epoch
+ (c)
+ Distribution of dendritic timing factors on Branch 1
+ Timing factor
+ Epoch
+ Distribution of dendritic timing factors on Branch 2
+ Timing factor
+ Figure S4. Two-dendritic-branch DH-SNNs without connection restriction for the multi-timescale spiking XOR
+ problem. (a), Comparing recognition accuracy of two-dendritic-branch DH-SFNNs under different initializations of dentritic
+ timing factors. The evolving of α on (b) Branch 1 and (c) Branch 2 under the medium initialization during training. In the
+ experiments, Signal 1 and Signal 2 are randomly connected to the two dendritic branches without connection restriction.
+ Two-dendritic-branch DH-SFNNs succeed in handling the problem. The KDE lines of α distributions gradually exhibit three
+ peaks different from the initialization, which evidences that the learning process can make the dendritic timing factors acquire
+ selectivity to multiple timescales of input signals. In above experiments, unless otherwise specified, the timing factors of
+ membrane potentials are initialized following a medium distribution and are learnable during training. KDE line, kernel density
+ estimate line.
+ S6/S16
+S2.5 Temporal characterization of SHD and SSC datasets
+（a）
+（b）
+(c)
+ Figure S5. Temporal characterization of SHD and SSC datasets. The spectrograms of the original waves of (a) SHD and
+ (b) SSC datasets. Here each sample is temporally divided into time bins, and the spectrogram is obtained by conducting Fast
+ Fourier transform for all time bins. The final spectrogram of a dataset is obtained from averaging spectrograms of all samples.
+ Apparently, the average spectrogram of SSC demonstrates richer temporal components at different frequency levels than that of
+ SHD, which also reflects the higher complexity of SSC. c, Temporal heterogeneity of spike events from SHD and SSC datasets
+ by showing the mean firing rate of the differenc channels.
+ S7/S16
+S2.6 Influence of the number of dendritic branches
+（a）
+（b）
+Figure S6. Influence of the number of dendritic branches. Comparing recognition accuracy of (a) DH-SFNNs and (b)
+ DH-SRNNs with different number of dendritic branches on SHD and SSC datasets. The timing factors of membrane potentials
+ and dendritic currents are initialized with a medium distribution and a large distribution, respectively, both of which are
+ learnable. Each model only has one single layer. The accuracy can be improved as the number of dendritic branches properly
+ grows, while can be saturated and even degraded when exceedingly grows. The standard deviations (presented as error bars)
+ represent 5 repeated trials.
+ S8/S16
+S2.7 Influence of the parameter volume
+ Figure S7. Influence of the parameter volume. Comparing recognition accuracy and the parameter volume of vanilla SNNs
+ and DH-SNNs with different dendritic branches on the SSC dataset. The models include one-layer SFNNs, one-layer SFNNs
+ with a wider structure which doubles the number of neurons per layer, two-layer SFNNs, and one-layer SRNNs. The bars
+ present their recognition accuracy and the dotted lines demonstrate their parameter volume. Apparently, the one-layer SFNNs
+ perform the worst with the minimum amount of parameters while the one-layer SFNNs with a wider structure perform the
+ second worst even if they have the maximum number of parameters, which suggests that the performance improvement cannot
+ be achieved by simply increasing the parameter volume. The standard deviations (presented as error bars) represent 5 repeated
+ trials.
+ S9/S16
+S2.8 Model robustness
+ (a)
+ (b)
+ Figure S8. Model robustness. Comparing robustness of vanilla SRNNs and DH-SRNNs with different numbers of dendritic
+ branches in resisting random spike noises on (a) SHD and (b) SSC datasets. The spike noises follow a Poisson distribution and
+ have different noise rates. The testing models only have one single layer. The bars present recognition accuracy under different
+ random noise rates. The results suggest that DH-SRNNs with multiple dendritic branches present better robustness against the
+ interference of random spike noises.
+ S10/S16
+S2.9 Model generalization
+ (a)
+ (b)
+ (c)
+ (d)
+ Figure S9. Model generalization. Comparing the generalization capability of (a) vanilla SFNNs and DH-SFNNs, (b) vanilla
+ SRNNs and DH-SRNNs in adapting to different sampling time intervals on the SHD dataset. Comparing the generalization
+ capability of of (c) vanilla SFNNs and DH-SFNNs, (d) vanilla SRNNs and DH-SRNNs in adapting to different sampling time
+ intervals on the SSC dataset. All of testing models only have one single layer. DH-SFNNs and DH-SRNNs can have one or
+ eight dendritic branches. The models are first pre-trained under the sampling time interval of dt=1ms and then quickly
+ f
+ ine-tuned under a new sampling time interval such as dt=2ms, dt=4ms, or dt=8ms. During fine-tuning, we fix massive
+ synaptic weights and only train timing factors which just occupy a small fraction of total parameters. The fune-tuning process
+ lasts only 20 epochs. At last, we evaluate the generalization capability by checking recognition accuracy under the new
+ sampling time interval. The results imply that DH-SNNs with multiple dendritic branches can generalize to input information
+ with variable timescales much better, owing to the natural temporal heterogeneity in the modeling of DH-SNNs.
+ S11/S16
+S2.10 Influence of the dendritic connection pattern
+ Figure S10. Influence of the dendritic connection pattern. Comparing recognition accuracy of one-layer DH-SFNNs with
+ eight dendritic branches under different sparsity ratios on SHD and SSC datasets. The sparsity ratio represents the ratio of
+ synaptic inputs connected to each dendritic branch over total synaptic inputs. The area inside the red dotted box shows the
+ models that perform well in both tasks.
+ S12/S16
+S2.11Detailsofimplementationonneuromorphichardware
+ (a) (b)
+ (c)
+ Operations Input data type Output data type
+ 𝐕=𝐖𝐗+𝐁
+ (FC)
+ 𝑊: INT8
+ 𝑋: Ternary INT32
+ 𝐕=𝚺𝐗+𝐁
+ (Sum) INT8 INT32
+ Memory data move INT8/Ternary INT8/Ternary
+ LIF dynamics INT32 Spike: Ternary
+ Membrane potential: INT8
+ Data transmission INT8/Ternary INT8/Ternary
+ 52
+ 1817
+ 563
+ IDLE
+ 885
+ 885
+ 885
+ IDLE
+ IDLE
+ IDLE
+ IDLE
+ SSC
+ 1/Throughput
+ Latency per timestep (in clock cycles)
+ 52
+ 1817
+ 563
+ IDLE
+ 885
+ 885
+ 885
+ IDLE
+ IDLE
+ IDLE
+ IDLE
+ 52
+ 1817
+ 563
+ IDLE
+ 885
+ 885
+ 885
+ IDLE
+ IDLE
+ IDLE
+ IDLE
+ 52
+ 1817
+ 563
+ IDLE
+ 885
+ 885
+ 885
+ IDLE
+ IDLE
+ IDLE
+ IDLE
+ 52
+ 1817
+ 563
+ IDLE
+ 885
+ 885
+ 885
+ IDLE
+ IDLE
+ IDLE
+ IDLE
+ 52
+ 1817
+ 563
+ IDLE
+ 885
+ 885
+ 885
+ IDLE
+ IDLE
+ IDLE
+ IDLE
+ Group 1
+ Group 2
+ Group 6
+ Group 3
+ Group 4
+ Group 5
+ 175175175175
+ 32 32 32
+ 700
+ 32
+ 32
+ 700
+ 175175175175
+ 32 32 32 32
+ 700
+ 32
+ 175175175175
+ 32 32 32
+ 700
+ 32
+ 32
+ 48 48 48 48
+ 32 32 32
+ 192
+ 32
+ 32
+ 48 48 48 48
+ 32 32 32
+ 192
+ 32
+ 32
+ 48 48 48 48
+ 32 32 32
+ 192
+ 32
+ 32
+ …
+ …
+ …
+ 3 groups
+ 35
+ 192
+ Group 6 Group 1
+ Group 2 (6 cores) Group 3 (6 cores)
+ Group 1
+ 700
+ Reorderandsplit
+ 700
+ 175175175175
+ 32 32 32 32
+ 175175175175
+ 32 32 32
+ 700
+ FC and LIF
+ Sum and LIF
+ 32
+ Group 2
+ 32 32
+ FC and LIF
+ Group 3
+ 20
+ 64
+ Model on SHD Model on SSC
+ Inter-core data movement
+ Inner-core data movement
+ Computing
+ n Spikes of <n> neurons
+ n Dendritic currents of <n> neurons 
+n Membrane potentials of <n> neurons
+ 52
+ 1703
+ 249
+ IDLE
+ IDLE
+ SHD
+ Group 1
+ Group 2
+ Group 3
+ 52
+ 1703
+ 249
+ IDLE
+ IDLE
+ 52
+ 1703
+ 249
+ IDLE
+ IDLE
+ 1/Throughput
+ Latency per timestep (in clock cycles)
+ 52
+ 1703
+ 249
+ IDLE
+ IDLE
+ FigureS11.Detailsofimplementationonneuromorphichardware.a,OperationsneededforimplementingDH-SNNson
+ theTianjicXneuromorphicchip.b,LogicalmappingofDH-SNNsonSHDandSSCdatasets,whereineachboxisanon-chip
+ functionalcore.c,Chipexecutiontimingschedule.Theintra-coreprimitiveinstructionsareexecutedinseriesforbetter
+ utilization,thecoresineachgroupruninparallelforshorterlatency,andthegroupsarescheduledinapipelineforhigher
+ throughput.
+ S13/S16
+S2.12 Additional experiments for EEG-based emotion recognition
+ (a)
+ (c)
+ (e)
+ (b)
+ (d)
+ (f)
+ Figure S12. Additional experiments for EEG-based emotion recognition. Recognition accuracy curves of one-layer
+ DH-SRNNs in three-class (a) valence and (b) arousal emotion recognition tasks. Recognition accuracy curves of one-layer
+ DH-SFNNs in two-class (c) valence and (d) arousal emotion recognition tasks. Recognition accuracy curves of one-layer
+ DH-SRNNs in two-class (e) valence and (f) arousal emotion recognition tasks. The dataset used for experiments is the DEAP
+ dataset. The two-class version maps the levels of valence and arousal to two labels: low (score fewer than 5) and high (score
+ higher than 5). Compared to the three-class emotion recognition, the accuracy results in the two-class emotion recognition are
+ much higher. Compared to the results with DH-SFNNs, the accuracy gap presents a reduced trend between DH-SRNNs when
+ varying the number of dendritic branches.
+ S14/S16
+S2.13 The NeuroVPR task for the robot
+ (a)
+ Environment
+ Where am I ?
+ …
+ Where am I ?
+ Dynamic Vision Sensor
+（DAVIS 346）
+Moving route
+ Mobile robot
+ Pre-processing
+ (b)
+ …
+ DVS camera
+ Event stream
+ Place recognition
+ DH-SNN models
+ Figure S13. The NeuroVPR task for the robot. a, Illustration of the NeuroVPR task. The mobile robot recognizes the
+ spatial position where it is through SNN models fed with a duration of the spike event steam generated by a DVS camera. b,
+ Comparison of performance between vanilla SNNs and DH-SNNs with four dendritic branches in the NeuroVPR task. The
+ results evidence the great potential of DH-SNNs in performing robotic tasks with rich temporal information.
+ S15/S16
+Supplementary References
+ 1. Cramer, B., Stradmann, Y., Schemmel, J. & Zenke, F. The heidelberg spiking data sets for the systematic evaluation of
+ spiking neural networks. IEEE Transactions on Neural Networks Learn. Syst. 33, 2744–2757 (2022).
+ 2. Horowitz, M. 1.1 computing’s energy problem (and what we can do about it). In 2014 IEEE International Solid-State
+ Circuits Conference Digest of Technical Papers (ISSCC), 10–14 (2014).
+ 3. Jirayucharoensak, S., Pan-Ngum, S. & Israsena, P. Eeg-based emotion recognition using deep learning network with
+ principal component based covariate shift adaptation. The Sci. World J. 2014, 627892 (2014).
+ 4. Tripathi, S., Acharya, S., Sharma, R., Mittal, S. & Bhattacharya, S. Using deep and convolutional neural networks for
+ accurate emotion classification on deap dataset. Proc. AAAI Conf. on Artif. Intell. 31, 4746–4752 (2017).
+ 5. Islam, M. R. et al. Eeg channel correlation based model for emotion recognition. Comput. Biol. Medicine 136, 104757
+ (2021).
+ S16/S16

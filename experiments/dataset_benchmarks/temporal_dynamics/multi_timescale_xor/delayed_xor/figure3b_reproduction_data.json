@@ -1,0 +1,69 @@
+{
+  "experiment": "Figure_3b_reproduction",
+  "timestamp": "2025-05-26T02:57:45.838468",
+  "data": {
+    "delays": [
+      25,
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      400
+    ],
+    "vanilla_accuracies": [
+      55.0,
+      55.0,
+      55.0,
+      55.0,
+      55.0,
+      55.0,
+      55.0,
+      55.0
+    ],
+    "dh_accuracies": [
+      84.2,
+      82.5,
+      76.7,
+      65.0,
+      66.7,
+      75.8,
+      84.2,
+      68.3
+    ],
+    "advantages": [
+      29.200000000000003,
+      27.5,
+      21.700000000000003,
+      10.0,
+      11.700000000000003,
+      20.799999999999997,
+      29.200000000000003,
+      13.299999999999997
+    ],
+    "relative_improvements": [
+      53.0909090909091,
+      50.0,
+      39.45454545454546,
+      18.181818181818183,
+      21.27272727272728,
+      37.81818181818181,
+      53.0909090909091,
+      24.181818181818176
+    ]
+  },
+  "statistics": {
+    "average_vanilla": 55.0,
+    "average_dh": 75.425,
+    "average_advantage": 20.424999999999997,
+    "average_relative_improvement": 37.136363636363626
+  },
+  "methodology": {
+    "sequence_length_control": "fixed_effective_processing_time",
+    "effective_length": 50,
+    "training_samples": 1000,
+    "test_samples": 120,
+    "framework": "SpikingJelly"
+  }
+}

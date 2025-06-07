@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-06-05T14:36:12.924504",
+  "experiments": [
+    {
+      "experiment": "S-MNIST + Vanilla SRNN",
+      "task": "Sequential MNIST",
+      "model": "Vanilla SRNN",
+      "status": "completed",
+      "best_accuracy": 75.88,
+      "final_test_accuracy": 74.08,
+      "final_train_accuracy": 74.235,
+      "training_time_hours": 24.655713656809596,
+      "epochs_completed": 150,
+      "final_train_loss": 0.7621018557406184,
+      "final_test_loss": 0.7412692847885664
+    },
+    {
+      "experiment": "PS-MNIST + Vanilla SRNN",
+      "task": "Permuted Sequential MNIST",
+      "model": "Vanilla SRNN",
+      "status": "completed",
+      "best_accuracy": 76.81,
+      "final_test_accuracy": 76.23,
+      "final_train_accuracy": 76.14166666666667,
+      "training_time_hours": 24.897585214906268,
+      "epochs_completed": 150,
+      "final_train_loss": 0.7278859479340918,
+      "final_test_loss": 0.7225381205730801
+    },
+    {
+      "experiment": "S-MNIST + DH-SRNN",
+      "task": "Sequential MNIST",
+      "model": "DH-SRNN",
+      "status": "completed",
+      "best_accuracy": 10.1,
+      "final_test_accuracy": 9.82,
+      "final_train_accuracy": 10.101666666666667,
+      "training_time_hours": 0.8281377865870794,
+      "epochs_completed": 2,
+      "final_train_loss": 2.498767124938965,
+      "final_test_loss": 2.5131452982418074
+    },
+    {
+      "experiment": "PS-MNIST + DH-SRNN",
+      "task": "Permuted Sequential MNIST",
+      "model": "DH-SRNN",
+      "status": "training",
+      "current_best_accuracy": 0.0,
+      "current_test_accuracy": 0.0,
+      "current_epoch": "unknown",
+      "note": "\u8bad\u7ec3\u8fdb\u884c\u4e2d\uff0c\u6570\u636e\u4e3a\u6700\u65b0checkpoint"
+    }
+  ]
+}
